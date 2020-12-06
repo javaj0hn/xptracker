@@ -1,5 +1,5 @@
 <script>
-  import HomePage from './components/HomePage.svelte'
+  import Tracker from './components/Tracker.svelte'
 </script>
 
-<HomePage />
+<Tracker />
