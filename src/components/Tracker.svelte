@@ -2,21 +2,34 @@
 import {writable, get} from 'svelte/store'
 
 const formData = writable({
-  clanName: '',
+  clan_name: '',
   server: '',
-  trackMelee: '',
-  trackRanged: '',
-  trackMagic: '',
+  trackCombat: '',
   trackSkills: '',
-  eventName: '',
-  rsNames: []
+  event_name: '',
+  members: []
 })
 
-function handleSubmit(event) {
+async function handleSubmit(event) {
   console.log("Submitted");
-  console.log($formData.clanName);
+  console.log($formData);
 
-  formData.update(clanName = "Nope");
+  const res = await fetch('http://localhost:8000/osrs/track/s/clan', {
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      $formData
+    })
+  })
+
+  const json = await res.json()
+  result = JSON.stringify(json)
+  console.log(result);
+
+  console.log("Completed");
 }
 </script>
 <div class="container">
@@ -44,18 +57,18 @@ function handleSubmit(event) {
   <div class="text-input stacked block">
     <em>Clan Information</em>
     <div class="form-group">
-      <input type="text" id="clan_name" name="clan_name" bind:value={$formData.clanName}/>
+      <input type="text" id="clan_name" name="clan_name" bind:value={$formData.clan_name}/>
       <label for="clan_name">Clan Name</label>
     </div>
     <div class="form-group">
-      <input type="text" id="event_name" name="event_name" />
+      <input type="text" id="event_name" name="event_name" bind:value={$formData.event_name}/>
       <label for="event_name">Event Name</label>
     </div>
   </div>
   <div class="text-input stacked block">
     <em>Members</em>
     <div class="form-group">
-      <textarea name="textarea" contentEditable="true" placeholder="One RSN Per Line" id="rsns"></textarea>
+      <textarea name="textarea" contentEditable="true" placeholder="One RSN Per Line" id="rsns" bind:value={$formData.members}></textarea>
       <label for="members">RSN(s)</label>
     </div>
   </div>
