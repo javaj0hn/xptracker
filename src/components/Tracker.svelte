@@ -16,12 +16,15 @@ async function handleSubmit(event) {
 
   const res = await fetch('http://localhost:8000/osrs/track/s/clan', {
     method: 'POST',
-    mode: 'cors',
     headers: {
-      'Content-Type': 'application/json'
+      'Accept': 'application/json',
+      'Access-Control-Allow-Origin':'*'
     },
     body: JSON.stringify({
-      $formData
+      clan_name: $formData.clan_name,
+      event_name: $formData.event_name,
+      server: $formData.server,
+      members: $formData.split('\n')
     })
   })
 
