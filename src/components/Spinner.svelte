@@ -1,3 +1,6 @@
+<script>
+import {writable, get} from 'svelte/store'
+</script>
 <div class="container" id="form_loader">
   <h1>EXP Tracker</h1>
   <h2>Msg Drunk#0731 on discord for help</h2>
