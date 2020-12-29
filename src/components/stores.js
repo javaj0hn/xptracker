@@ -8,3 +8,7 @@ export const clanData = writable({
   event_name: '',
   members: []
 })
+
+export const token = writable(0);
+
+export const results = writable({});

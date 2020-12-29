@@ -1,5 +1,5 @@
 <script>
-import { clanData } from './stores.js';
+import { clanData, token } from './stores.js';
 
 async function handleSubmit(event) {
   console.log("Submitted");
@@ -20,8 +20,12 @@ async function handleSubmit(event) {
   })
 
   const json = await res.json()
-  var result = JSON.stringify(json);
-  console.log(result);
+  //var result = JSON.stringify(json);
+  var result = json;
+
+  console.log(result.token);
+
+  token.set(result.token);
 
   console.log("Completed");
 }

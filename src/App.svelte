@@ -1,16 +1,11 @@
 <script>
-  import Tracker from './components/Tracker.svelte'
-  import Spinner from './components/Spinner.svelte'
-
-  let home = true;
-  let spinner = false;
-  let enterToken = false;
-  let results = false;
-
-  
+  import Tracker from './components/Tracker.svelte';
+  import Spinner from './components/Spinner.svelte';
+  import EndTracking from './components/EndTracking.svelte';
+  import Results from './components/Results.svelte';
 </script>
 
 <Tracker />
-{#if spinner}
 <Spinner />
-{/if}
+<EndTracking />
+<Results />
