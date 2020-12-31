@@ -1,5 +1,5 @@
 <script>
-import { results } from './stores.js';
+import { results, eventDetails, mvpDetails, memberDetails } from './stores.js';
 import { writable } from 'svelte/store';
 </script>
 
@@ -17,16 +17,20 @@ import { writable } from 'svelte/store';
           <th>Top Melee</th>
           <th>Top Ranged</th>
           <th>Top Magic</th>
+          <th>Top Snarer</th>
         </tr>
       </thead>
       <tbody>
-        <td id="r_clan_name">Corrupt Pures</td>
-        <td id="r_event_name">F2P Prep vs. Fi</td>
+      <tr>
+        <td id="r_clan_name">{$eventDetails['clan_name']}</td>
+        <td id="r_event_name">{$eventDetails['event_name']}</td>
         <td id="r_date">01/01/2000</td>
-        <td id="r_mvp">Drunkin R2h</td>
-        <td id="r_melee_mvp">Zezima</td>
-        <td id="r_ranged_mvp">Toxine</td>
-        <td id="r_magic_mvp">Chain</td>
+        <td id="r_mvp">{$mvpDetails['overall_mvp_rsn']}</td>
+        <td id="r_melee_mvp">{$mvpDetails['strength_mvp_rsn']}</td>
+        <td id="r_ranged_mvp">{$mvpDetails['ranged_mvp_rsn']}</td>
+        <td id="r_magic_mvp">{$mvpDetails['magic_mvp_rsn']}</td>
+        <td id="r_snare_mvp">{$mvpDetails['snare_mvp_rsn']}</td>
+        </tr>
       </tbody>
     </table>
     <table id="tracker_table" class="table table-bordered">
@@ -44,6 +48,19 @@ import { writable } from 'svelte/store';
         </tr>
       </thead>
       <tbody>
+      	{#each $memberDetails as { rsn, overall_xp, attack_xp, strength_xp, defence_xp, hitpoints_xp, ranged_xp, magic_xp }}
+        <tr>
+        <td></td>
+        <td>{rsn}</td>
+        <td>{overall_xp}</td>
+        <td>{attack_xp}</td>
+        <td>{strength_xp}</td>
+        <td>{defence_xp}</td>
+        <td>{hitpoints_xp}</td>
+        <td>{ranged_xp}</td>
+        <td>{magic_xp}</td>
+        </tr>
+	      {/each}
       </tbody>
     </table>
   </div>

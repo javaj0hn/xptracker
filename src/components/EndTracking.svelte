@@ -1,5 +1,5 @@
 <script>
-import { clanData, token, results } from './stores.js';
+import { clanData, token, results, eventDetails, mvpDetails, memberDetails } from './stores.js';
 
 async function handleSubmit(event) {
   console.log("Submitted End Tracking");
@@ -21,10 +21,13 @@ async function handleSubmit(event) {
   var result = json;
 
   console.log(result);
-  
-  results.set(result);
 
-  console.log($results);
+  eventDetails.set(result[0]['event_details']);
+  mvpDetails.set(result[1]);
+  memberDetails.set(result[2]);
+
+  console.log($memberDetails);
+  //console.log($eventDetails);
   
   console.log("Completed");
 }

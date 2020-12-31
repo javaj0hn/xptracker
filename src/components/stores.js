@@ -1,4 +1,4 @@
-import {writable, get} from 'svelte/store';
+import {writable, get, subscribe} from 'svelte/store';
 
 export const clanData = writable({
   clan_name: '',
@@ -11,4 +11,14 @@ export const clanData = writable({
 
 export const token = writable(0);
 
-export const results = writable({});
+export const eventDetails = writable([]);
+
+export const mvpDetails = writable([]);
+
+export const memberDetails = writable([]);
+
+export const results = writable({
+  eventDetails: [],
+  mvpDetails: [],
+  members: []
+});
