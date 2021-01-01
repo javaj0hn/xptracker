@@ -1,9 +1,22 @@
 <script>
-import { clanData, token } from './stores.js';
+  import { onMount, afterUpdate } from 'svelte';
+  import Spinner from './Spinner.svelte';
+  import EndTracking from './EndTracking.svelte';
+  import Results from './Results.svelte';
+
+  import { clanData, token } from './stores.js';
+  
+  let component;
+
+    onMount(() => {
+      component = "tracker";
+  });
 
 async function handleSubmit(event) {
   console.log("Submitted");
   console.log($clanData);
+
+  component = "spinner";
 
   const res = await fetch('http://localhost:8000/osrs/track/s/clan', {
     method: 'POST',
@@ -27,10 +40,21 @@ async function handleSubmit(event) {
 
   token.set(result.token);
 
+  component = "end";
+
   console.log("Completed");
 }
-
 </script>
+{#if component === "spinner"}
+<Spinner />
+{/if}
+{#if component === "end"}
+<EndTracking />
+{/if}
+{#if component === "results"}
+<Results />
+{/if}
+{#if component === "tracker"}
 <div id="home" class="container">
   <h1>EXP Tracker</h1>
   <h2>Msg Drunk#0731 on discord for help</h2>
@@ -76,3 +100,4 @@ async function handleSubmit(event) {
   </center>
   </form>
 </div>
+{/if}

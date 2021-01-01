@@ -634,3 +634,9 @@ text-decoration: none; /* no underline */
     opacity: 0;
   }
 }
+
+#gainPlus {
+  color: #78FB98;
+  font-weight: 700;
+  font-style: normal;
+}

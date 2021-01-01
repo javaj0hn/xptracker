@@ -18,6 +18,7 @@ import { writable } from 'svelte/store';
           <th>Top Ranged</th>
           <th>Top Magic</th>
           <th>Top Snarer</th>
+          <th>Share</th>
         </tr>
       </thead>
       <tbody>
@@ -30,6 +31,7 @@ import { writable } from 'svelte/store';
         <td id="r_ranged_mvp">{$mvpDetails['ranged_mvp_rsn']}</td>
         <td id="r_magic_mvp">{$mvpDetails['magic_mvp_rsn']}</td>
         <td id="r_snare_mvp">{$mvpDetails['snare_mvp_rsn']}</td>
+        <td>http://cp-rs.com</td>
         </tr>
       </tbody>
     </table>
@@ -48,17 +50,17 @@ import { writable } from 'svelte/store';
         </tr>
       </thead>
       <tbody>
-      	{#each $memberDetails as { rsn, overall_xp, attack_xp, strength_xp, defence_xp, hitpoints_xp, ranged_xp, magic_xp }}
+      	{#each $memberDetails as { rsn, overall_xp, attack_xp, strength_xp, defence_xp, hitpoints_xp, ranged_xp, magic_xp, snare_count }, i}
         <tr>
-        <td></td>
+        <td>{i + 1}</td>
         <td>{rsn}</td>
-        <td>{overall_xp}</td>
-        <td>{attack_xp}</td>
-        <td>{strength_xp}</td>
-        <td>{defence_xp}</td>
-        <td>{hitpoints_xp}</td>
-        <td>{ranged_xp}</td>
-        <td>{magic_xp}</td>
+        <td>{#if overall_xp > 0}<span id='gainPlus'>+</span>{:else}{/if}{overall_xp}</td>
+        <td>{#if attack_xp > 0}<span id='gainPlus'>+</span>{:else}{/if}{attack_xp}</td>
+        <td>{#if strength_xp > 0}<span id='gainPlus'>+</span>{:else}{/if}{strength_xp}</td>
+        <td>{#if defence_xp > 0}<span id='gainPlus'>+</span>{:else}{/if}{defence_xp}</td>
+        <td>{#if hitpoints_xp > 0}<span id='gainPlus'>+</span>{:else}{/if}{hitpoints_xp}</td>
+        <td>{#if ranged_xp > 0}<span id='gainPlus'>+</span>{:else}{/if}{ranged_xp}</td>
+        <td>{#if magic_xp > 0}<span id='gainPlus'>+</span>{:else}{/if}{magic_xp}/<img src="https://oldschool.runescape.wiki/images/b/b9/Snare.png" />{snare_count}</td>
         </tr>
 	      {/each}
       </tbody>
