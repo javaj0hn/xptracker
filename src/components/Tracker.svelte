@@ -3,8 +3,9 @@
   import Spinner from './Spinner.svelte';
   import EndTracking from './EndTracking.svelte';
   import Results from './Results.svelte';
+  import Header from './Header.svelte';
 
-  import { clanData, token } from './stores.js';
+  import { clanData, token, results, eventDetails, mvpDetails, memberDetails } from './stores.js';
   
   let component;
 
@@ -44,20 +45,68 @@ async function handleSubmit(event) {
 
   console.log("Completed");
 }
+async function endTrackClick(event) {
+  console.log("Submitted End Tracking");
+  console.log($token);
+
+  component = "spinner";
+
+  const res = await fetch('http://localhost:8000/osrs/track/e/clan', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Access-Control-Allow-Origin':'*'
+    },
+    body: JSON.stringify({
+      token: $token,
+    })
+  })
+
+  const json = await res.json()
+  //var result = JSON.stringify(json);
+  var result = json;
+
+  console.log(result);
+
+  eventDetails.set(result[0]['event_details']);
+  mvpDetails.set(result[1]);
+  memberDetails.set(result[2]);
+
+  console.log($memberDetails);
+  //console.log($eventDetails);
+
+  component = "results";
+  
+  console.log("Completed");
+}
 </script>
+<Header />
 {#if component === "spinner"}
 <Spinner />
 {/if}
 {#if component === "end"}
-<EndTracking />
+<form on:submit|preventDefault={endTrackClick}>
+<div class="container" id="form_2">
+  <center>
+    <h4 id="endMsg">Save this ID or leave this page open during your event so you can end tracking after your event has
+      completed.</h4>
+  </center>
+  <div class="text-input stacked block">
+    <em>End Tracking</em>
+    <div class="form-group">
+      <input type="text" id="event_id_provided" name="event_id_provided" bind:value={$token}/>
+      <label for="event_id_provided">Event ID</label>
+    </div>
+  </div>
+  <button class="button -flower center" id="end_track">End Tracking</button>
+</div>
+</form>
 {/if}
 {#if component === "results"}
 <Results />
 {/if}
 {#if component === "tracker"}
 <div id="home" class="container">
-  <h1>EXP Tracker</h1>
-  <h2>Msg Drunk#0731 on discord for help</h2>
   <form on:submit|preventDefault={handleSubmit}>
   <div class="checkbox block">
     <em>Options</em>
@@ -96,7 +145,6 @@ async function handleSubmit(event) {
     </div>
   </div>
   <center><button class="button -flower center" id="track_button">Begin Tracking</button>
-    <a class="button -flower center" id="token_already">Already have a token?</a>
   </center>
   </form>
 </div>

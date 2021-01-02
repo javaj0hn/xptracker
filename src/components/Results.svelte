@@ -4,8 +4,6 @@ import { writable } from 'svelte/store';
 </script>
 
 <div class="container" id="form_results">
-  <h1>Tracker Results</h1>
-  <h2>Msg Drunk#0731 on discord for help</h2>
   <div class="text-input stacked block">
     <table class="table table-bordered">
       <thead>
