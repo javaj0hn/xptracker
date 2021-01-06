@@ -41,24 +41,24 @@ import { writable } from 'svelte/store';
           <th><img src="http://i.imgur.com/3nYEsXh.gif" /> Overall</th>
           <th><img src="http://i.imgur.com/bIz0RUd.gif" /> Attack</th>
           <th><img src="http://i.imgur.com/lnUDoaf.gif" /> Strength</th>
-          <th><img src="https://oldschool.runescape.wiki/images/b/b7/Defence_icon.png" /> Defence</th>
           <th><img src="http://i.imgur.com/39ETEHl.gif" /> Hitpoints</th>
           <th><img src="http://i.imgur.com/NjqUqhC.gif" /> Ranged</th>
           <th><img src="http://i.imgur.com/bD1GLyq.gif" /> Magic</th>
+          <th><img src="https://oldschool.runescape.wiki/images/b/b9/Snare.png" /> Snares</th>
         </tr>
       </thead>
       <tbody>
-      	{#each $memberDetails as { rsn, overall_xp, attack_xp, strength_xp, defence_xp, hitpoints_xp, ranged_xp, magic_xp, snare_count }, i}
+      	{#each $memberDetails as { rsn, overall_xp, attack_xp, strength_xp, hitpoints_xp, ranged_xp, magic_xp, snare_count }, i}
         <tr>
         <td>{i + 1}</td>
         <td>{rsn}</td>
         <td>{#if overall_xp > 0}<span id='gainPlus'>+</span>{:else}{/if}{overall_xp}</td>
         <td>{#if attack_xp > 0}<span id='gainPlus'>+</span>{:else}{/if}{attack_xp}</td>
         <td>{#if strength_xp > 0}<span id='gainPlus'>+</span>{:else}{/if}{strength_xp}</td>
-        <td>{#if defence_xp > 0}<span id='gainPlus'>+</span>{:else}{/if}{defence_xp}</td>
         <td>{#if hitpoints_xp > 0}<span id='gainPlus'>+</span>{:else}{/if}{hitpoints_xp}</td>
         <td>{#if ranged_xp > 0}<span id='gainPlus'>+</span>{:else}{/if}{ranged_xp}</td>
-        <td>{#if magic_xp > 0}<span id='gainPlus'>+</span>{:else}{/if}{magic_xp}/<img src="https://oldschool.runescape.wiki/images/b/b9/Snare.png" />{snare_count}</td>
+        <td>{#if magic_xp > 0}<span id='gainPlus'>+</span>{:else}{/if}{magic_xp}</td>
+        <td>{#if snare_count > 0}<span id='gainPlus'>+</span>{:else}{/if}{snare_count}</td>
         </tr>
 	      {/each}
       </tbody>
