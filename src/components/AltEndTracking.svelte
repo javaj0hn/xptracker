@@ -24,6 +24,8 @@
   eventDetails.set(result[0]['event_details']);
   mvpDetails.set(result[1]);
   memberDetails.set(result[2]);
+
+  window.location.href = "http://localhost:5000/Event/" + $token;
 }
 
 </script>
