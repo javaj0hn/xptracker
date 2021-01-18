@@ -10,7 +10,7 @@ export let eventDetails, mvpDetails, memberDetails;
 onMount(async () => {
     console.log(id);
     if (id){
-		const res = await fetch(`http://localhost:8000/osrs/track/results/` + id);
+		const res = await fetch(`http://api.mossgiant.xyz/osrs/track/results/` + id);
 		var results = await res.json();
 		
 		eventDetails = results[0]['event_details'];
@@ -20,7 +20,7 @@ onMount(async () => {
 });
 
 async function handleSubmit(event) {
-  window.location.href = "http://localhost:5000/Event/" + id;
+  window.location.href = "http://tracker.mossgiant.xyz/Event/" + id;
 }
 </script>
 

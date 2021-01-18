@@ -19,7 +19,7 @@ async function handleSubmit(event) {
 
   component = "spinner";
 
-  const res = await fetch('http://localhost:8000/osrs/track/s/clan', {
+  const res = await fetch('http://api.mossgiant.xyz/osrs/track/s/clan', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -51,7 +51,7 @@ async function endTrackClick(event) {
 
   component = "spinner";
 
-  const res = await fetch('http://localhost:8000/osrs/track/e/clan', {
+  const res = await fetch('http://api.mossgiant.xyz/osrs/track/e/clan', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',

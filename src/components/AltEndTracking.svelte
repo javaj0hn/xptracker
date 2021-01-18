@@ -6,7 +6,7 @@
   console.log("Submitted End Tracking");
   console.log($token);
 
-  const res = await fetch('http://localhost:8000/osrs/track/e/clan', {
+  const res = await fetch('http://api.mossgiant.xyz/osrs/track/e/clan', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -25,7 +25,7 @@
   mvpDetails.set(result[1]);
   memberDetails.set(result[2]);
 
-  window.location.href = "http://localhost:5000/Event/" + $token;
+  window.location.href = "http://tracker.mossgiant.xyz/Event/" + $token;
 }
 
 </script>
