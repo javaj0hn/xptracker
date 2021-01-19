@@ -6,7 +6,7 @@
   <div class="text-input stacked block">
     <em>End Tracking</em>
     <div class="form-group">
-      <input type="text" id="event_id_provided" name="event_id_provided" bind:value={$token}/>
+      <input type="text" id="event_id_provided" name="event_id_provided"/>
       <label for="event_id_provided">Event ID</label>
     </div>
   </div>
